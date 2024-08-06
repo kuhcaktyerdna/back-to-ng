@@ -1,0 +1,28 @@
+$small: 20px;
+$medium: 40px;
+$large: 60px;
+
+:host {
+  display: block;
+
+  .icon {
+    width: inherit;
+    height: inherit;
+  }
+}
+
+:host(.small) {
+  width: $small;
+  height: $small;
+}
+
+:host(.medium) {
+  width: $medium;
+  height: $medium;
+}
+
+:host(.large) {
+  width: $large;
+  height: $large;
+}
+

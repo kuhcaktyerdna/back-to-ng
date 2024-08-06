@@ -1,8 +1,9 @@
 <div class="app-container">
 
-  <div class="input-container">
-    <input [(ngModel)]="title">
+  <app-header/>
+  <div class="body">
+    <router-outlet></router-outlet>
   </div>
+  <app-footer/>
 
-  <span>{{title}}</span>
 </div>
