@@ -5,5 +5,10 @@
   (keydown)="onSubmit($event)"
 />
 @if (withButton) {
-  <button type="button" class="btn btn-outline-secondary"><i class="fa fa-search"></i></button>
+  <ui-button
+    [type]="'secondary'"
+    [outline]="true"
+  >
+    <i class="fa fa-search"></i>
+  </ui-button>
 }
