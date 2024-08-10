@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
+  search(searchStr: string): void {
+    console.log(searchStr);
+  }
 }

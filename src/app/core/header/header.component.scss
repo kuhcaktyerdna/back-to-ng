@@ -7,10 +7,31 @@
   position: absolute;
   left: 0;
   top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   width: 100%;
   height: $header-height;
 
   border-bottom: 1px solid $grey;
+
+  .header-container {
+    height: 100%;
+    width: 60%;
+    display: flex;
+
+    ui-icon {
+      margin: 10px;
+      cursor: pointer;
+    }
+
+    ui-input {
+      width: 50%;
+      align-items: center;
+      margin: auto;
+    }
+
+  }
 
 }

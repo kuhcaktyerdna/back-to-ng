@@ -1,1 +1,9 @@
-<div class="header-container">header works!</div>
+<div class="header-container">
+  <ui-icon [size]="'large'"
+           [iconPath]="'assets/navbar-logo.svg'"></ui-icon>
+  <ui-input
+    [placeholder]="'Search for...'"
+    [withButton]="true"
+    (submit)="search($event)"
+  ></ui-input>
+</div>

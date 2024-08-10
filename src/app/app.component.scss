@@ -1,13 +1,23 @@
-.app-container {
+:host {
 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
+  $header-height: 80px;
+  .app-container {
 
-  .input-container {
-    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+    .input-container {
+      padding: 5px;
+    }
+
+    .body {
+      width: 100%;
+      min-height: calc(100% - #{$header-height * 2});
+      margin-top: $header-height;
+    }
+
   }
-
 }
