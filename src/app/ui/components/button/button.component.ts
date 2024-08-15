@@ -14,7 +14,7 @@ export class ButtonComponent {
   outline?: boolean;
 
   get btnClass(): string {
-    return `btn-${this.outline && 'outline' || ''}-${this.type}`;
+    return `btn${this.outline && '-outline' || ''}-${this.type}`;
   }
 
 }

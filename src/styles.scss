@@ -19,3 +19,8 @@ body {
   background-color: $grey !important;
   border-color: $dark-grey !important;
 }
+
+.dropdown.with-hover:hover .dropdown-menu {
+  display: block;
+  margin-top: 0; /* remove the gap so it doesn't close */
+}

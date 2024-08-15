@@ -13,17 +13,24 @@ export class InputComponent {
   @Input()
   withButton?: boolean;
 
-  @Output()
-  valueChange: EventEmitter<string> = new EventEmitter<string>();
+  value: string = '';
 
   @Output()
-  submit: EventEmitter<string> = new EventEmitter();
+  readonly valueChange: EventEmitter<string> = new EventEmitter();
 
-  onSubmit(event: KeyboardEvent): void {
+  @Output()
+  readonly submit: EventEmitter<string> = new EventEmitter();
+
+  onKeydown(event: KeyboardEvent): void {
     if (event.key === 'Enter') {
-      const searchStr: string = (<HTMLInputElement>event.target)?.value;
-      this.submit.emit(searchStr);
+      this.onSubmit();
     }
-
   }
+
+  onSubmit(): void {
+    if (this.value) {
+      this.submit.emit(this.value);
+    }
+  }
+
 }

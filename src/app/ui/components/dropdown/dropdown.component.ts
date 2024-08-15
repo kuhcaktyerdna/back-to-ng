@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'ui-dropdown',
@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrl: './dropdown.component.scss'
 })
 export class DropdownComponent {
+
+  @Input()
+  openOnHover: boolean = false;
 
 }
