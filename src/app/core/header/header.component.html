@@ -1,9 +1,88 @@
-<div class="header-container">
-  <ui-icon [size]="'large'"
-           [iconPath]="'assets/navbar-logo.svg'"></ui-icon>
+<header class="header-container">
+  <div class="logo-wrapper">
+    <ui-icon [size]="'large'"
+             [iconPath]="'assets/navbar-logo.svg'"></ui-icon>
+    <span class="logo-name">AllTech</span>
+  </div>
   <ui-input
     [placeholder]="'Search for...'"
     [withButton]="true"
     (submit)="search($event)"
-  ></ui-input>
-</div>
+  >
+    <fa-icon [icon]="faSearch"></fa-icon>
+  </ui-input>
+
+  <ui-dropdown class="m-1"
+               [openOnHover]="true">
+    <ng-container button>
+      <fa-icon [icon]="faUser"></fa-icon>
+    </ng-container>
+
+    <ng-container dropdown-menu>
+      <form [formGroup]="userForm" class="p-2">
+        <div class="mb-3">
+          <label for="userEmail" class="form-label">Email address</label>
+          <input type="email"
+                 class="form-control"
+                 id="userEmail"
+                 placeholder="email@example.com"
+                 [formControlName]="'userEmail'">
+        </div>
+        <div class="mb-3">
+          <label for="userPassword" class="form-label">Password</label>
+          <input type="password"
+                 class="form-control"
+                 id="userPassword"
+                 placeholder="Password"
+                 [formControlName]="'userPassword'">
+        </div>
+        <ui-button class="mb-1"
+                   [type]="'secondary'"
+                   (click)="signIn()"
+        >Sign in
+        </ui-button>
+        <ui-button [type]="'secondary'"
+                   [outline]="true"
+                   (click)="signUp()">
+          Sign up
+        </ui-button>
+      </form>
+    </ng-container>
+  </ui-dropdown>
+
+  <ui-dropdown class="m-1"
+               [openOnHover]="true">
+    <ng-container button>
+      <fa-icon [icon]="faHeart"></fa-icon>
+    </ng-container>
+
+    <ng-container dropdown-menu>
+      Favorites
+    </ng-container>
+  </ui-dropdown>
+
+
+  <ui-dropdown class="m-1">
+    <ng-container button>
+      <fa-icon [icon]="faHeadset"></fa-icon>
+    </ng-container>
+
+    <ng-container dropdown-menu>
+      Support
+    </ng-container>
+  </ui-dropdown>
+
+  <ui-dropdown class="m-1">
+    <ng-container button>
+      <fa-icon [icon]="faCartShopping"></fa-icon>
+    </ng-container>
+
+    <ng-container dropdown-menu>
+      <div class="shopping-cart-dropdown">
+        <span>
+          Shopping cart is empty now
+        </span>
+      </div>
+    </ng-container>
+  </ui-dropdown>
+</header>

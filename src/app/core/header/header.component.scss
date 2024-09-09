@@ -19,17 +19,38 @@
   .header-container {
     height: 100%;
     width: 60%;
+    min-width: 800px;
     display: flex;
+    align-items: center;
 
-    ui-icon {
-      margin: 10px;
+    .logo-wrapper {
+      display: flex;
+      align-items: center;
       cursor: pointer;
+      user-select: none;
+
+      .logo-name {
+        color: $dark-grey;
+      }
+
+      ui-icon {
+        margin: 10px;
+      }
     }
 
     ui-input {
       width: 50%;
       align-items: center;
       margin: auto;
+    }
+
+    ui-dropdown::ng-deep {
+      .dropdown > .dropdown-toggle {
+        border: none;
+      }
+    }
+
+    .shopping-cart-dropdown {
     }
 
   }
