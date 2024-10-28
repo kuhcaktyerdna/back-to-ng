@@ -2,10 +2,10 @@ import { Component, HostBinding, Input } from '@angular/core';
 
 @Component({
   selector: 'ui-icon',
-  templateUrl: './ui-icon.component.html',
-  styleUrl: './ui-icon.component.scss'
+  templateUrl: './icon.component.html',
+  styleUrl: './icon.component.scss'
 })
-export class UiIconComponent {
+export class IconComponent {
 
   @Input()
   @HostBinding('class')

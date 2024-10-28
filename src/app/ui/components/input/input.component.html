@@ -1,0 +1,16 @@
+<input
+  type="text"
+  class="form-control"
+  [placeholder]="placeholder"
+  [(ngModel)]="value"
+  (keydown)="onKeydown($event)"
+/>
+@if (withButton) {
+  <ui-button
+    [type]="'secondary'"
+    [outline]="true"
+    (click)="onSubmit()"
+  >
+    <ng-content></ng-content>
+  </ui-button>
+}
