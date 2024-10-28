@@ -8,6 +8,8 @@ import {
   faUser
 } from "@fortawesome/free-solid-svg-icons";
 import { IconDefinition } from "@fortawesome/angular-fontawesome";
+import { Store } from "@ngrx/store";
+import { LOGIN } from "../../state/auth/auth.actions";
 
 @Component({
   selector: 'app-header',
@@ -31,12 +33,16 @@ export class HeaderComponent {
     },
   );
 
+  constructor(private readonly store: Store) {
+  }
+
   search(searchStr: string): void {
     console.log(searchStr);
   }
 
   signIn(): void {
     console.log(`signIn ${this.userForm.value}`);
+    this.store.dispatch(LOGIN({email: this.userForm.value.userEmail, password: this.userForm.value.userPassword}));
   }
 
   signUp(): void {

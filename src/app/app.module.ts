@@ -8,14 +8,22 @@ import { HeaderComponent } from "./core/header/header.component";
 import { RouterModule } from "@angular/router";
 import { routes } from "./app.routes";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
+import { StoreModule } from "@ngrx/store";
+import { authReducer } from "./state/auth/auth.reducer";
+import { EffectsModule } from "@ngrx/effects";
+import { AuthEffects } from "./state/auth/auth.effects";
+import { AuthService } from "./service/auth.service";
+import { HttpClientModule, provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 
 @NgModule({
   imports: [
     BrowserModule,
+    EffectsModule.forRoot([AuthEffects]),
     FormsModule,
     FontAwesomeModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes),
+    StoreModule.forRoot({auth: authReducer}),
     UiModule
   ],
   declarations: [
@@ -23,7 +31,10 @@ import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
     FooterComponent,
     HeaderComponent
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    provideHttpClient(withInterceptorsFromDi())
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
