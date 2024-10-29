@@ -3,7 +3,7 @@ import { createReducer, on } from "@ngrx/store";
 import { LOGGED_IN, LOGOUT } from "./auth.actions";
 
 export interface AuthState {
-  user: User | null;
+  user: User;
 }
 
 export const initialState: AuthState = {
