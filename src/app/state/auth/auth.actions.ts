@@ -14,3 +14,8 @@ export const LOGGED_IN = createAction(
 export const LOGOUT = createAction(
   '[AUTH] logout'
 )
+
+export const REGISTER = createAction(
+  '[AUTH] register',
+  props<{ email: string; password: string }>()
+)

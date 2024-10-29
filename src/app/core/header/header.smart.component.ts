@@ -4,7 +4,7 @@ import { Observable } from "rxjs";
 import { User } from "../../model/user";
 import { selectUser } from "../../state/auth/auth.selectors";
 import { AppState } from "../../state/app.state";
-import { LOGIN, LOGOUT } from "../../state/auth/auth.actions";
+import { LOGIN, LOGOUT, REGISTER } from "../../state/auth/auth.actions";
 
 @Component({
   selector: 'app-header-smart',
@@ -12,6 +12,7 @@ import { LOGIN, LOGOUT } from "../../state/auth/auth.actions";
     <app-header-presentation [user]="user$ | async"
                              (signedIn)="onSignIn($event)"
                              (signedOut)="onSignOut()"
+                             (signedUp)="onSignUp($event)"
     ></app-header-presentation>
   `,
   styleUrl: './header-presentation.component.scss',
@@ -31,4 +32,9 @@ export class HeaderSmartComponent {
   onSignOut(): void {
     this.store.dispatch(LOGOUT());
   }
+
+  onSignUp({ email, password }: { email: string, password: string }): void {
+    this.store.dispatch(REGISTER({email, password}))
+  }
+
 }

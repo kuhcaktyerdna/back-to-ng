@@ -13,11 +13,11 @@ export class AuthService implements OnDestroy {
 
   constructor(private readonly http: HttpClient,
               private readonly toastr: ToastrService) {
-    this._USERS = JSON.parse(localStorage.getItem('users')) || new Map();
+    this._USERS = new Map(JSON.parse(localStorage.getItem('users'))) || new Map();
   }
 
   register(email: string, password: string): Observable<User> {
-    return from(hash(password, null)).pipe(
+    return from(hash(password, 0)).pipe(
       map(passwordHash => {
         const credentials: Credentials = { email, passwordHash };
         if (this._USERS.has(credentials)) {
@@ -27,6 +27,7 @@ export class AuthService implements OnDestroy {
 
         const user: User = { id: this._USERS.size, email };
         this._USERS.set(credentials, user);
+        localStorage.setItem('users', JSON.stringify(Array.from(this._USERS.entries())));
         this.toastr.success('User has been registered.');
         return user;
       })
@@ -42,7 +43,7 @@ export class AuthService implements OnDestroy {
       return of(null);
     }
 
-    return from(compare(credentials.passwordHash, password)).pipe(
+    return from(compare(password, credentials.passwordHash)).pipe(
       map(passwordMatch => {
         if (!passwordMatch) {
           this.toastr.error('Password is incorrect.');
@@ -56,6 +57,7 @@ export class AuthService implements OnDestroy {
   }
 
   ngOnDestroy(): void {
+    console.log('ondestroy')
     localStorage.setItem('users', JSON.stringify(this._USERS))
   }
 

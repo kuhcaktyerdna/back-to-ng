@@ -32,6 +32,9 @@ export class HeaderPresentationComponent {
   @Output()
   signedOut: EventEmitter<{ email: string }> = new EventEmitter();
 
+  @Output()
+  signedUp: EventEmitter<{ email: string, password: string }> = new EventEmitter();
+
   protected readonly userForm: FormGroup = new FormGroup({
       userEmail: new FormControl("", [
         Validators.required,
@@ -54,6 +57,6 @@ export class HeaderPresentationComponent {
   }
 
   signUp(): void {
-    console.log(`signUp ${this.userForm.value}`);
+    this.signedUp.emit({email: this.userForm.value.userEmail, password: this.userForm.value.userPassword })
   }
 }
