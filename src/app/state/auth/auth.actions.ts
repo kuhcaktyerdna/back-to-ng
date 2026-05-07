@@ -8,7 +8,7 @@ export const LOGIN = createAction(
 
 export const LOGGED_IN = createAction(
   '[AUTH] user logged in',
-  props < { user: User }>()
+  props <User>()
 );
 
 export const LOGOUT = createAction(

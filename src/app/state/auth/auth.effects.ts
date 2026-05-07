@@ -13,24 +13,24 @@ export class AuthEffects {
   ) {
   }
 
-  login$: Observable<{ user: User }> = createEffect(() =>
+  login$: Observable<User> = createEffect(() =>
     this.actions$.pipe(
       ofType(LOGIN),
       switchMap(({ email, password }: { email: string, password: string }) => {
         return this.authService.authenticate(email, password).pipe(
           filter(Boolean),
-          map(user => LOGGED_IN({ user }))
+          map(LOGGED_IN)
         );
       })
     ));
 
-  register$: Observable<{ user: User }> = createEffect(() =>
+  register$: Observable<User> = createEffect(() =>
     this.actions$.pipe(
       ofType(REGISTER),
       switchMap(({ email, password }: { email: string, password: string }) => {
         return this.authService.register(email, password).pipe(
           filter(Boolean),
-          map(user => LOGGED_IN({ user }))
+          map(LOGGED_IN)
         );
       })
     )
