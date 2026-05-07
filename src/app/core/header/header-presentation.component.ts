@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import {
   faCartShopping,
@@ -8,19 +8,32 @@ import {
   faUser
 } from "@fortawesome/free-solid-svg-icons";
 import { IconDefinition } from "@fortawesome/angular-fontawesome";
+import { User } from "../../model/user";
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrl: './header.component.scss',
+  selector: 'app-header-presentation',
+  templateUrl: './header-presentation.component.html',
+  styleUrl: './header-presentation.component.scss',
 })
-export class HeaderComponent {
+export class HeaderPresentationComponent {
 
   protected readonly faHeadset: IconDefinition = faHeadset;
   protected readonly faSearch: IconDefinition = faSearch;
   protected readonly faUser: IconDefinition = faUser;
   protected readonly faHeart: IconDefinition = faHeart;
   protected readonly faCartShopping: IconDefinition = faCartShopping;
+
+  @Input()
+  user: User;
+
+  @Output()
+  signedIn: EventEmitter<{ email: string, password: string }> = new EventEmitter();
+
+  @Output()
+  signedOut: EventEmitter<{ email: string }> = new EventEmitter();
+
+  @Output()
+  signedUp: EventEmitter<{ email: string, password: string }> = new EventEmitter();
 
   protected readonly userForm: FormGroup = new FormGroup({
       userEmail: new FormControl("", [
@@ -36,10 +49,14 @@ export class HeaderComponent {
   }
 
   signIn(): void {
-    console.log(`signIn ${this.userForm.value}`);
+    this.signedIn.emit({ email: this.userForm.value.userEmail, password: this.userForm.value.userPassword });
+  }
+
+  signOut(): void {
+    this.signedOut.emit();
   }
 
   signUp(): void {
-    console.log(`signUp ${this.userForm.value}`);
+    this.signedUp.emit({email: this.userForm.value.userEmail, password: this.userForm.value.userPassword })
   }
 }

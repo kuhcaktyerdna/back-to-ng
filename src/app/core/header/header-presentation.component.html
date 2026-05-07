@@ -19,34 +19,44 @@
     </ng-container>
 
     <ng-container dropdown-menu>
-      <form [formGroup]="userForm" class="p-2">
-        <div class="mb-3">
-          <label for="userEmail" class="form-label">Email address</label>
-          <input type="email"
-                 class="form-control"
-                 id="userEmail"
-                 placeholder="email@example.com"
-                 [formControlName]="'userEmail'">
+      @if (!user) {
+        <form [formGroup]="userForm" class="p-2">
+          <div class="mb-3">
+            <label for="userEmail" class="form-label">Email address</label>
+            <input type="email"
+                   class="form-control"
+                   id="userEmail"
+                   placeholder="email@example.com"
+                   [formControlName]="'userEmail'">
+          </div>
+          <div class="mb-3">
+            <label for="userPassword" class="form-label">Password</label>
+            <input type="password"
+                   class="form-control"
+                   id="userPassword"
+                   placeholder="Password"
+                   [formControlName]="'userPassword'">
+          </div>
+          <ui-button class="mb-1"
+                     [type]="'secondary'"
+                     (click)="signIn()"
+          >Sign in
+          </ui-button>
+          <ui-button [type]="'secondary'"
+                     [outline]="true"
+                     (click)="signUp()">
+            Sign up
+          </ui-button>
+        </form>
+      } @else {
+        <div class="m-3">
+          <span>You've logged in! {{ user.email }}</span>
+          <ui-button class="mb-1"
+                     [type]="'secondary'"
+                     (click)="signOut()"
+          >Sign out</ui-button>
         </div>
-        <div class="mb-3">
-          <label for="userPassword" class="form-label">Password</label>
-          <input type="password"
-                 class="form-control"
-                 id="userPassword"
-                 placeholder="Password"
-                 [formControlName]="'userPassword'">
-        </div>
-        <ui-button class="mb-1"
-                   [type]="'secondary'"
-                   (click)="signIn()"
-        >Sign in
-        </ui-button>
-        <ui-button [type]="'secondary'"
-                   [outline]="true"
-                   (click)="signUp()">
-          Sign up
-        </ui-button>
-      </form>
+      }
     </ng-container>
   </ui-dropdown>
 

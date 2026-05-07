@@ -21,7 +21,8 @@
     "lib": [
       "ES6",
       "dom"
-    ]
+    ],
+    "strictNullChecks": false
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
