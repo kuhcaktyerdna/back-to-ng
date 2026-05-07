@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import {
   faCartShopping,
   faHeadset,
@@ -7,13 +7,25 @@ import {
   faSearch,
   faUser
 } from "@fortawesome/free-solid-svg-icons";
-import { IconDefinition } from "@fortawesome/angular-fontawesome";
+import { FaIconComponent, IconDefinition } from "@fortawesome/angular-fontawesome";
 import { User } from "../../model/user";
+import { DropdownComponent } from "../../ui/components/dropdown/dropdown.component";
+import { ButtonComponent } from "../../ui/components/button/button.component";
+import { InputComponent } from "../../ui/components/input/input.component";
+import { IconComponent } from "../../ui/components/icon/icon.component";
 
 @Component({
   selector: 'app-header-presentation',
   templateUrl: './header-presentation.component.html',
   styleUrl: './header-presentation.component.scss',
+  imports: [
+    DropdownComponent,
+    FaIconComponent,
+    ButtonComponent,
+    ReactiveFormsModule,
+    InputComponent,
+    IconComponent
+  ]
 })
 export class HeaderPresentationComponent {
 

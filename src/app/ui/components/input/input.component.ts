@@ -1,8 +1,14 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ButtonComponent } from "../button/button.component";
+import { FormsModule } from "@angular/forms";
 
 @Component({
   selector: 'ui-input',
   templateUrl: './input.component.html',
+  imports: [
+    ButtonComponent,
+    FormsModule
+  ],
   styleUrl: './input.component.scss'
 })
 export class InputComponent {

@@ -5,6 +5,8 @@ import { User } from "../../model/user";
 import { selectUser } from "../../state/auth/auth.selectors";
 import { AppState } from "../../state/app.state";
 import { LOGIN, LOGOUT, REGISTER } from "../../state/auth/auth.actions";
+import { HeaderPresentationComponent } from "./header-presentation.component";
+import { AsyncPipe } from "@angular/common";
 
 @Component({
   selector: 'app-header-smart',
@@ -15,7 +17,11 @@ import { LOGIN, LOGOUT, REGISTER } from "../../state/auth/auth.actions";
                              (signedUp)="onSignUp($event)"
     ></app-header-presentation>
   `,
-  styleUrl: './header-presentation.component.scss',
+  imports: [
+    HeaderPresentationComponent,
+    AsyncPipe
+  ],
+  styleUrl: './header-presentation.component.scss'
 })
 export class HeaderSmartComponent {
 
