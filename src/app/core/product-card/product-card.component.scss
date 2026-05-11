@@ -1,0 +1,50 @@
+@use "../../../styles/colors" as *;
+
+
+:host {
+  display: block;
+
+  .product-card-container {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px;
+
+    border-radius: 10px;
+    border: 1px solid #ccc;
+
+    .preview-wrapper {
+      flex: 1;
+      min-width: 0;
+
+      .preview-title {
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .preview-image {
+        margin: 10px 0;
+      }
+
+    }
+
+    .info-wrapper {
+
+      .price {
+        margin-left: auto;
+        margin-bottom: auto;
+        font-size: 40px;
+        color: $burgundy;
+      }
+
+      ui-button {
+        margin-left: auto;
+        margin-top: auto;
+      }
+    }
+
+  }
+}

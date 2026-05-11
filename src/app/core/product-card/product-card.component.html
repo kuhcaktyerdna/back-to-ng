@@ -1,0 +1,14 @@
+<div class="product-card-container">
+  <div class="preview-wrapper">
+    <span class="preview-title">{{ product.title }}</span>
+    <img class="preview-image" [ngSrc]="product.images[0]"
+         width="200"
+         height="200"
+         draggable="false"
+         alt="no image found">
+  </div>
+  <div class="info-wrapper">
+    <span class="price">{{ product.price }}$</span>
+    <ui-button [type]="'warning'">Add to cart</ui-button>
+  </div>
+</div>

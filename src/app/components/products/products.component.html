@@ -1,0 +1,5 @@
+<div class="products-container">
+  @for (product of productsService.allProducts.value(); track product.id) {
+    <app-product-card [product]="product"></app-product-card>
+  }
+</div>
