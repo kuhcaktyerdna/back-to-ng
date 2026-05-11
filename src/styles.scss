@@ -1,7 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
-@import "styles/colors.scss";
-// regular style toast
-@import 'ngx-toastr/toastr';
+@use "styles/colors" as *;
+@use 'ngx-toastr/toastr';
 
 
 html, body {

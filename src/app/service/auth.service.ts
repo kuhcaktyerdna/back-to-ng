@@ -1,25 +1,23 @@
-import { Injectable, OnDestroy } from "@angular/core";
+import { inject, Injectable, OnDestroy } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { User } from "../model/user";
 import { from, map, Observable, of } from "rxjs";
 import { compare, hash } from "bcrypt-ts";
-import { Credentials } from "../model/credentials";
+import { CredentialsModel } from "../model/credentials.model";
 import { ToastrService } from "ngx-toastr";
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthService implements OnDestroy {
 
-  private readonly _USERS: Map<Credentials, User>;
-
-  constructor(private readonly http: HttpClient,
-              private readonly toastr: ToastrService) {
-    this._USERS = new Map(JSON.parse(localStorage.getItem('users'))) || new Map();
-  }
+  private readonly _USERS: Map<CredentialsModel, User> = this.loadUsersFromStorage();
+  private readonly toastr: ToastrService = inject(ToastrService);
 
   register(email: string, password: string): Observable<User> {
     return from(hash(password, 0)).pipe(
       map(passwordHash => {
-        const credentials: Credentials = { email, passwordHash };
+        const credentials: CredentialsModel = { email, passwordHash };
         if (this._USERS.has(credentials)) {
           this.toastr.warning('User with the following credentials already exists.');
           return null;
@@ -54,6 +52,15 @@ export class AuthService implements OnDestroy {
       })
     );
 
+  }
+
+  private loadUsersFromStorage(): Map<CredentialsModel, User> {
+    const stored: string = localStorage.getItem('users');
+    if (!stored) {
+      return new Map();
+    }
+
+    return new Map(JSON.parse(localStorage.getItem('users')));
   }
 
   ngOnDestroy(): void {

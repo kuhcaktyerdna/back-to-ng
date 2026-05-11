@@ -1,0 +1,10 @@
+<p>home works!</p>
+<div class="container">
+  @for (product of productsService.products.value(); track product.id) {
+    <div>{{product.id}}</div>
+    <div>{{product.title}}</div>
+    <div>{{product.price}}</div>
+    <img [src]="product.image" alt="">
+    <p></p>
+  }
+</div>

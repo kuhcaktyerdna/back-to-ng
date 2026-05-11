@@ -1,5 +1,5 @@
-import { Injectable } from "@angular/core";
-import { Actions, createEffect, CreateEffectMetadata, ofType } from "@ngrx/effects";
+import { inject, Injectable } from "@angular/core";
+import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { LOGGED_IN, LOGIN, REGISTER } from "./auth.actions";
 import { filter, map, Observable, switchMap } from "rxjs";
 import { AuthService } from "../../service/auth.service";
@@ -8,10 +8,8 @@ import { User } from "../../model/user";
 @Injectable()
 export class AuthEffects {
 
-  constructor(private readonly actions$: Actions,
-              private readonly authService: AuthService,
-  ) {
-  }
+  private readonly actions$: Actions = inject(Actions);
+  private readonly authService: AuthService = inject(AuthService);
 
   login$: Observable<User> = createEffect(() =>
     this.actions$.pipe(
