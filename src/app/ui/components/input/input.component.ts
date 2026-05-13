@@ -19,21 +19,21 @@ export class InputComponent {
   @Input()
   withButton?: boolean;
 
-  value: string = '';
+  protected value: string = '';
 
   @Output()
-  readonly valueChange: EventEmitter<string> = new EventEmitter();
+  protected readonly valueChange: EventEmitter<string> = new EventEmitter();
 
   @Output()
-  readonly submit: EventEmitter<string> = new EventEmitter();
+  protected readonly submit: EventEmitter<string> = new EventEmitter();
 
-  onKeydown(event: KeyboardEvent): void {
+  protected onKeydown(event: KeyboardEvent): void {
     if (event.key === 'Enter') {
       this.onSubmit();
     }
   }
 
-  onSubmit(): void {
+  protected onSubmit(): void {
     if (this.value) {
       this.submit.emit(this.value);
     }

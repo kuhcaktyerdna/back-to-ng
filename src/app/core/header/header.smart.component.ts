@@ -25,17 +25,17 @@ export class HeaderSmartComponent {
 
   private readonly store: Store<AppState> = inject(Store);
 
-  public user: Signal<User> = toSignal(this.store.select(selectUser));
+  protected user: Signal<User> = toSignal(this.store.select(selectUser));
 
-  onSignIn({ email, password }: { email: string, password: string }): void {
+  protected onSignIn({ email, password }: { email: string, password: string }): void {
     this.store.dispatch(LOGIN({ email, password }));
   }
 
-  onSignOut(): void {
+  protected onSignOut(): void {
     this.store.dispatch(LOGOUT());
   }
 
-  onSignUp({ email, password }: { email: string, password: string }): void {
+  protected onSignUp({ email, password }: { email: string, password: string }): void {
     this.store.dispatch(REGISTER({email, password}))
   }
 

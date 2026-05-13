@@ -35,36 +35,36 @@ export class HeaderPresentationComponent {
   user: User;
 
   @Output()
-  signedIn: EventEmitter<{ email: string, password: string }> = new EventEmitter();
+  protected signedIn: EventEmitter<{ email: string, password: string }> = new EventEmitter();
 
   @Output()
-  signedOut: EventEmitter<{ email: string }> = new EventEmitter();
+  protected signedOut: EventEmitter<{ email: string }> = new EventEmitter();
 
   @Output()
-  signedUp: EventEmitter<{ email: string, password: string }> = new EventEmitter();
+  protected signedUp: EventEmitter<{ email: string, password: string }> = new EventEmitter();
 
   protected readonly userForm: FormGroup = new FormGroup({
-      userEmail: new FormControl("", [
+      userEmail: new FormControl<string>("", [
         Validators.required,
         Validators.email
       ]),
-      userPassword: new FormControl("", [])
+      userPassword: new FormControl<string>("", [])
     },
   );
 
-  search(searchStr: string): void {
+  protected search(searchStr: string): void {
     console.log(searchStr);
   }
 
-  signIn(): void {
+  protected signIn(): void {
     this.signedIn.emit({ email: this.userForm.value.userEmail, password: this.userForm.value.userPassword });
   }
 
-  signOut(): void {
+  protected signOut(): void {
     this.signedOut.emit();
   }
 
-  signUp(): void {
+  protected signUp(): void {
     this.signedUp.emit({email: this.userForm.value.userEmail, password: this.userForm.value.userPassword })
   }
 }

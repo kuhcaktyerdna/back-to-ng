@@ -1,4 +1,5 @@
 @use "../../../styles/colors" as *;
+@use "../../../styles/mixins" as *;
 
 
 :host {
@@ -6,23 +7,23 @@
 
   .product-card-container {
     display: flex;
-    width: 100%;
-    flex-direction: row;
-    align-items: center;
+    justify-content: space-between;
     padding: 10px;
 
     border-radius: 10px;
     border: 1px solid #ccc;
 
     .preview-wrapper {
-      flex: 1;
-      min-width: 0;
+      display: flex;
+      flex-direction: column;
 
       .preview-title {
-        display: block;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        max-width: 200px;
+        cursor: pointer;
+        @include text-ellipsis();
+        font-size: 20px;
+        font-family: Arial, serif;
+        font-weight: bold;
       }
 
       .preview-image {
@@ -32,17 +33,20 @@
     }
 
     .info-wrapper {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
 
       .price {
-        margin-left: auto;
-        margin-bottom: auto;
         font-size: 40px;
         color: $burgundy;
+        @include text-ellipsis();
+        max-width: 150px;
       }
 
       ui-button {
-        margin-left: auto;
-        margin-top: auto;
+        max-width: 110px;
+        align-self: flex-end;
       }
     }
 

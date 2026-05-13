@@ -12,6 +12,6 @@ import { ProductService } from "../../service/product.service";
 })
 export class ProductsComponent {
 
-  readonly productsService: ProductService = inject(ProductService);
+  protected readonly productsService: ProductService = inject(ProductService);
 
 }
