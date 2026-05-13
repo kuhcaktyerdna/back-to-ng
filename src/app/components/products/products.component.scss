@@ -5,13 +5,32 @@
   .products-container {
     width: 1000px;
     margin: 20px 0;
-    /*display: grid;*/
-    /*grid-template-columns: 250px 250px;*/
-
-    /*gap: 10px 20px;*/
 
     app-product-card {
       margin: 10px;
     }
   }
+
+  .pagination-container {
+    display: flex;
+    height: 38px;
+    margin: 50px 0;
+
+    .page-size-container {
+      display: flex;
+      margin-left: auto;
+      margin-right: 10px;
+
+      span {
+        margin: auto 5px;
+      }
+
+      ui-dropdown::ng-deep .dropdown-menu {
+        padding: 0;
+        min-width: 65px;
+      }
+    }
+
+  }
+
 }

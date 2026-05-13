@@ -1,17 +1,31 @@
 <div class="product-card-container">
   <div class="preview-wrapper">
     <span class="preview-title" [ngbTooltip]="product.title">{{ product.title }}</span>
-    <img class="preview-image" [ngSrc]="product.images[0]"
+    <ngb-rating [max]="5" [readonly]="true" [rate]="product.rating"/>
+    <span class="rating">{{ product.rating }}</span>
+    <img class="preview-image" [ngSrc]="product.thumbnail"
          width="200"
          height="200"
          draggable="false"
          alt="no image found">
   </div>
-  <span class="description">{{ product.description }}</span>
+  <div class="description">
+    <span class="availability"
+          [ngClass]="getClassForAvailability(product.availabilityStatus)">
+      <fa-icon [icon]="getIconForAvailability(product.availabilityStatus)" [mask]=""/>
+      {{ product.availabilityStatus }}
+    </span>
+    <span><b>Product code:</b> {{ product.sku }}</span>
+    <span><b>Shipping:</b> {{ product.shippingInformation }}</span>
+    <span><b>Warranty: </b>{{ product.warrantyInformation }}</span>
+    <span><b>Return: </b>{{ product.returnPolicy }}</span>
+  </div>
   <div class="info-wrapper">
     <span class="price" [ngbTooltip]="getProductPrice(product)">{{ getProductPrice(product) }}</span>
     <ui-button
-      [type]="'warning'"
-    >Add to cart</ui-button>
+      [type]="'success'"
+    > Add to cart
+      <fa-icon [icon]="faCartArrowDown"></fa-icon>
+    </ui-button>
   </div>
 </div>

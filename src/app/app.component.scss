@@ -1,6 +1,7 @@
 :host {
   display: block;
   $header-height: 80px;
+  $footer-height: 180px;
 
   .app-container {
 
@@ -16,9 +17,8 @@
 
     .body {
       width: 100%;
-      min-height: calc(100% - #{$header-height * 2});
+      min-height: calc(100vh - #{$header-height} - #{$footer-height});
       margin-top: $header-height;
-      margin-bottom: $header-height;
     }
 
   }

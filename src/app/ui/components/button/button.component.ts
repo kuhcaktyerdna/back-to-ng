@@ -8,7 +8,7 @@ import { Component, input, Input } from '@angular/core';
 export class ButtonComponent {
 
   @Input()
-  type: 'primary' | 'secondary' | 'success' | 'warning' | 'danger' = 'primary';
+  type: 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'info' = 'primary';
 
   @Input()
   outline?: boolean;

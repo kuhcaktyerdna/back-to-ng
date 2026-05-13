@@ -26,3 +26,16 @@ body {
   display: block;
   margin-top: 1px;
 }
+
+
+ngb-pagination .page-item {
+  &.active .page-link {
+    background-color: $ngb-success;
+    border-color: $ngb-success;
+  }
+
+  &:not(.active) .page-link {
+    color: grey
+  }
+
+}
