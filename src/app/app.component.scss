@@ -1,3 +1,5 @@
+@use "../styles/colors" as *;
+
 :host {
   display: block;
   $header-height: 80px;
@@ -19,6 +21,7 @@
       width: 100%;
       min-height: calc(100vh - #{$header-height} - #{$footer-height});
       margin-top: $header-height;
+      background-color: $light-blue
     }
 
   }

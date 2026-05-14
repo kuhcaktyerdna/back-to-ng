@@ -1,1 +1,4 @@
-<p>categories works!</p>
+@for (category of categoriesService.allCategories.value(); track category.slug) {
+  <a [routerLink]="['/products', category.slug]">{{ category.name }}</a>
+  <p></p>
+}

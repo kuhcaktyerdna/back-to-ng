@@ -21,7 +21,7 @@
     <span><b>Return: </b>{{ product.returnPolicy }}</span>
   </div>
   <div class="info-wrapper">
-    <span class="price" [ngbTooltip]="getProductPrice(product)">{{ getProductPrice(product) }}</span>
+    <span class="price d-flex justify-content-center" [ngbTooltip]="getProductPrice(product)">{{ getProductPrice(product) }}</span>
     <ui-button
       [type]="'success'"
     > Add to cart

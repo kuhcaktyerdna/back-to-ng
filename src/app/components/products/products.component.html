@@ -1,3 +1,4 @@
+<app-categories></app-categories>
 <div class="products-container">
   <h1>Products</h1>
   @if (productsService.allProducts.isLoading()) {
@@ -10,8 +11,8 @@
     @for (product of productsService.allProducts.value().products; track product.id) {
       <app-product-card [product]="product"></app-product-card>
     }
-    <div class="pagination-container">
-      <ngb-pagination class="ms-auto"
+    <div class="pagination-container position-relative d-flex justify-content-center">
+      <ngb-pagination
                       [collectionSize]="productsService.allProducts.value().total"
                       [page]="productsService.pageNumber()"
                       [pageSize]="productsService.pageSize()"
@@ -20,7 +21,7 @@
                       [boundaryLinks]="shouldShowBoundaryLinks()"
                       (pageChange)="changePage($event)"
       />
-      <div class="page-size-container">
+      <div class="page-size-container d-flex position-absolute end-0">
         <span>Per page: </span>
         <ui-dropdown class="page-size-dropdown">
           <ng-container button>
