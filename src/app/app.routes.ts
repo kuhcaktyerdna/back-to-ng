@@ -6,7 +6,7 @@ export const routes: Route[] = [
   { path: 'home', component: HomeComponent, title: 'Home' },
   {
     path: 'categories',
-    loadComponent: () => import('./components/categories/categories.component').then(m => m.CategoriesComponent),
+    loadComponent: () => import('./components/categories/categories.component'),
     title: 'Categories'
   },
   {

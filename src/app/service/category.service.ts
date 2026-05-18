@@ -1,10 +1,5 @@
 import { Injectable, resource, ResourceRef } from "@angular/core";
-
-class Category {
-  slug: string;
-  name: string;
-  url: string;
-}
+import { Category } from "../model/category.model";
 
 @Injectable({
   providedIn: 'root'

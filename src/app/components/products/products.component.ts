@@ -1,13 +1,16 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, computed, effect, inject, OnDestroy, Signal } from '@angular/core';
 import { ProductCardComponent } from "../../core/product-card/product-card.component";
 import { ProductService } from "../../service/product.service";
 import { ButtonComponent } from "../../ui/components/button/button.component";
 import { NgbPagination } from "@ng-bootstrap/ng-bootstrap";
 import { DropdownComponent } from "../../ui/components/dropdown/dropdown.component";
-import { CategoriesComponent } from "../categories/categories.component";
+import CategoriesComponent from "../categories/categories.component";
 import { ActivatedRoute } from "@angular/router";
-import { map, Subscription } from "rxjs";
+import { map } from "rxjs";
 import { ViewportScroller } from "@angular/common";
+import { CategoryService } from "../../service/category.service";
+import { toSignal } from "@angular/core/rxjs-interop";
+import { Category } from "../../model/category.model";
 
 @Component({
   selector: 'app-products',
@@ -21,19 +24,27 @@ import { ViewportScroller } from "@angular/common";
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss'
 })
-export default class ProductsComponent implements OnInit, OnDestroy {
+export default class ProductsComponent implements OnDestroy {
 
   protected readonly PAGE_SIZE_OPTIONS: number[] = [5, 10, 20, 50, 100];
-  protected category$: Subscription;
 
   protected readonly productsService: ProductService = inject(ProductService);
-  protected readonly activatedRoute = inject(ActivatedRoute);
-  private readonly scroller = inject(ViewportScroller);
+  private readonly categoriesService: CategoryService = inject(CategoryService);
+  private readonly activatedRoute: ActivatedRoute = inject(ActivatedRoute);
+  private readonly scroller: ViewportScroller = inject(ViewportScroller);
 
-  ngOnInit(): void {
-    this.category$ = this.activatedRoute.params.pipe(
-      map(extractAllParams => extractAllParams['categorySlug'] ?? null)
-    ).subscribe(category => this.productsService.category.set(category));
+  private readonly categorySlug: Signal<string> = toSignal(this.activatedRoute.params.pipe(
+    map(pathParams => pathParams['categorySlug'] ?? null)
+  ));
+  private readonly category: Signal<Category> = computed(() =>
+    this.categoriesService.allCategories.value().find(({ slug }) => slug === this.categorySlug())
+  );
+
+  constructor() {
+    effect(() => {
+      this.productsService.category.set(this.categorySlug());
+      document.title = this.category() ? `${this.category().name} | Products` : 'Products';
+    });
   }
 
   protected changePage(pageNumber: number): void {
@@ -52,7 +63,6 @@ export default class ProductsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.category$.unsubscribe();
     this.productsService.category.set(undefined);
   }
 
