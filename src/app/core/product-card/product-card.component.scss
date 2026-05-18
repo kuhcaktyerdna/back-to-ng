@@ -6,13 +6,11 @@
   display: block;
 
   .product-card-container {
-    background-color: $white;
+    @include white-glass();
     display: flex;
     justify-content: space-between;
     padding: 10px;
-
-    border-radius: 10px;
-    border: 1px solid #ccc;
+    border-radius: 0.375rem;
 
     .preview-wrapper {
       display: flex;
@@ -20,10 +18,8 @@
       cursor: pointer;
 
       .preview-title {
-        min-width: 400px;
-        max-width: 400px;
+        @include text-ellipsis(400px);
         cursor: pointer;
-        @include text-ellipsis();
         font-size: 20px;
         font-family: Arial, serif;
         font-weight: bold;
@@ -65,9 +61,7 @@
       .price {
         font-size: 40px;
         color: $burgundy;
-        @include text-ellipsis();
-        max-width: 200px;
-        min-width: 200px;
+        @include text-ellipsis(200px);
       }
 
       ui-button {

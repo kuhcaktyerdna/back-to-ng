@@ -11,10 +11,10 @@ export const routes: Route[] = [
   },
   {
     path: 'products/:categorySlug',
-    loadComponent: () => import('./components/products/products.component').then(m => m.ProductsComponent)
+    loadComponent: () => import('./components/products/products.component')
   }, {
     path: 'products',
-    loadComponent: () => import('./components/products/products.component').then(m => m.ProductsComponent),
+    loadComponent: () => import('./components/products/products.component'),
     title: 'Products'
   }
 ];

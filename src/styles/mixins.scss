@@ -1,5 +1,13 @@
-@mixin text-ellipsis {
+@mixin text-ellipsis($width) {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  max-width: $width;
+  min-width: $width;
+}
+
+@mixin white-glass {
+  background-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }

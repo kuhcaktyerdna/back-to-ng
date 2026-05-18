@@ -1,4 +1,12 @@
-@for (category of categoriesService.allCategories.value(); track category.slug) {
-  <a [routerLink]="['/products', category.slug]">{{ category.name }}</a>
-  <p></p>
-}
+<div class="categories-container">
+  @for (category of categoriesService.allCategories.value(); track category.slug) {
+    <ui-button class="category-button"
+               [ngbTooltip]="category.name"
+               [openDelay]="500"
+               [type]="'secondary'"
+               [outline]="true"
+               [routerLink]="['/products', category.slug]">
+      {{ category.name }}
+    </ui-button>
+  }
+</div>

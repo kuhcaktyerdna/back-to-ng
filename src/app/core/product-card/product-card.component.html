@@ -1,6 +1,11 @@
 <div class="product-card-container">
   <div class="preview-wrapper">
-    <span class="preview-title" [ngbTooltip]="product.title">{{ product.title }}</span>
+    <span class="preview-title"
+          [ngbTooltip]="product.title"
+          [openDelay]="1000"
+          [placement]="'top-left'"
+          [disableTooltip]="product.title.length < 35"
+    >{{ product.title }}</span>
     <ngb-rating [max]="5" [readonly]="true" [rate]="product.rating"/>
     <span class="rating">{{ product.rating }}</span>
     <img class="preview-image" [ngSrc]="product.thumbnail"
@@ -21,7 +26,11 @@
     <span><b>Return: </b>{{ product.returnPolicy }}</span>
   </div>
   <div class="info-wrapper">
-    <span class="price d-flex justify-content-center" [ngbTooltip]="getProductPrice(product)">{{ getProductPrice(product) }}</span>
+    <span class="price text-end"
+          [ngbTooltip]="getProductPrice(product)"
+          [openDelay]="1000"
+          [disableTooltip]="getProductPrice(product).length < 10"
+    >{{ getProductPrice(product) }}</span>
     <ui-button
       [type]="'success'"
     > Add to cart

@@ -1,0 +1,20 @@
+@use "../../../styles/colors" as *;
+@use "../../../styles/mixins" as *;
+
+:host {
+  .categories-container {
+    @include white-glass();
+    border-radius: 0.375rem;
+
+    ui-button::ng-deep {
+      button {
+        border: none;
+        background-color: transparent;
+        padding: 10px 20px;
+        text-align: left;
+        @include text-ellipsis(200px);
+        color: black;
+      }
+    }
+  }
+}

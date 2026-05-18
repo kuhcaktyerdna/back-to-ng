@@ -35,7 +35,7 @@ export class ProductCardComponent {
   }
 
   protected getClassForAvailability(availabilityStatus: AvailabilityStatus): string {
-    return availabilityStatus.toLocaleLowerCase().replace(' ', '_');
+    return availabilityStatus.toLocaleLowerCase().replaceAll(' ', '_');
   }
 
   protected readonly faCartArrowDown = faCartArrowDown;
