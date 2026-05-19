@@ -11,6 +11,7 @@ import { ViewportScroller } from "@angular/common";
 import { CategoryService } from "../../service/category.service";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { Category } from "../../model/category.model";
+import { SpinnerComponent } from "../../ui/components/spinner/spinner.component";
 
 @Component({
   selector: 'app-products',
@@ -19,7 +20,8 @@ import { Category } from "../../model/category.model";
     NgbPagination,
     DropdownComponent,
     ButtonComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    SpinnerComponent
   ],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss'
@@ -33,12 +35,12 @@ export default class ProductsComponent implements OnDestroy {
   private readonly activatedRoute: ActivatedRoute = inject(ActivatedRoute);
   private readonly scroller: ViewportScroller = inject(ViewportScroller);
 
+  protected readonly category: Signal<Category> = computed(() =>
+    this.categoriesService.allCategories.value()?.find(({ slug }) => slug === this.categorySlug())
+  );
   private readonly categorySlug: Signal<string> = toSignal(this.activatedRoute.params.pipe(
     map(pathParams => pathParams['categorySlug'] ?? null)
   ));
-  private readonly category: Signal<Category> = computed(() =>
-    this.categoriesService.allCategories.value().find(({ slug }) => slug === this.categorySlug())
-  );
 
   constructor() {
     effect(() => {

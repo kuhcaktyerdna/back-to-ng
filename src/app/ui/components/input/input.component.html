@@ -1,7 +1,7 @@
 <input
   type="text"
   class="form-control"
-  [placeholder]="placeholder"
+  [placeholder]="placeholder || ''"
   [(ngModel)]="value"
   (keydown)="onKeydown($event)"
 />

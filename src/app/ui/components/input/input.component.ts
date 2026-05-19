@@ -19,7 +19,8 @@ export class InputComponent {
   @Input()
   withButton?: boolean;
 
-  protected value: string = '';
+  @Input()
+  value?: string = '';
 
   @Output()
   protected readonly valueChange: EventEmitter<string> = new EventEmitter();

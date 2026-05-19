@@ -16,5 +16,10 @@ export const routes: Route[] = [
     path: 'products',
     loadComponent: () => import('./components/products/products.component'),
     title: 'Products'
+  },
+  {
+    path: 'product/:productId',
+    loadComponent: () => import('./components/single-product/single-product.component'),
+    title: 'Product'
   }
 ];

@@ -13,6 +13,9 @@ export class ButtonComponent {
   @Input()
   outline?: boolean;
 
+  @Input()
+  disabled?: () => boolean;
+
   protected get btnClass(): string {
     return `btn${this.outline && '-outline' || ''}-${this.type}`;
   }

@@ -1,0 +1,77 @@
+@if (productsService.singleProduct.isLoading()) {
+  <ui-spinner/>
+} @else {
+  <div class="products-container">
+
+    <div class="product-preview d-flex justify-content-between">
+      <div>
+        <h1>{{ product().title }}</h1>
+        <!-- Carousel -->
+        <ngb-carousel
+          [interval]="null"
+          [animation]="false"
+        >
+          @for (img of product().images; track img; ) {
+            <ng-template ngbSlide>
+              <div class="picsum-img-wrapper">
+                <img [ngSrc]="img"
+                     [priority]="true"
+                     [width]="PRODUCT_IMAGE_SIZE_PX"
+                     [height]="PRODUCT_IMAGE_SIZE_PX"
+                     [alt]="product().title"/>
+              </div>
+            </ng-template>
+          }
+        </ngb-carousel>
+      </div>
+
+      <!-- Main Info -->
+      <div class="product-info d-flex flex-column justify-content-center">
+    <span class="availability"
+          [ngClass]="ProductUtil.getClassForAvailability(product().availabilityStatus)">
+      <fa-icon [icon]="ProductUtil.getIconForAvailability(product().availabilityStatus)" [mask]=""/>
+      {{ product().availabilityStatus }}
+    </span>
+        <span><b>Brand:</b> {{ product().brand }}</span>
+        <span><b>Category:</b> {{ product().category }}</span>
+        <span><b>Product code:</b> {{ product().sku }}</span>
+        <span><b>Shipping:</b> {{ product().shippingInformation }}</span>
+        <span><b>Warranty: </b>{{ product().warrantyInformation }}</span>
+        <span><b>Return: </b>{{ product().returnPolicy }}</span>
+      </div>
+
+      <!-- Buy info -->
+      <div class="info-wrapper d-flex flex-column">
+      <span class="price text-end"
+            [ngbTooltip]="ProductUtil.getProductPrice(product())"
+            [openDelay]="1000"
+            [disableTooltip]="ProductUtil.getProductPrice(product()).length < 10"
+      >{{ ProductUtil.getProductPrice(product()) }}</span>
+        <span class="text-end flex-grow-1"><b>Stock:</b> {{ product().stock }}</span>
+        <div class="d-flex justify-content-around">
+          <ui-input [value]="'1'"></ui-input>
+          <ui-button
+            [disabled]="canBuy(product())"
+          > Add to cart
+            <fa-icon [icon]="faCartArrowDown"></fa-icon>
+          </ui-button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Secondary Info -->
+    <div class="product-description m-xxl-5 d-flex flex-column justify-content-center">
+      <h4>Description</h4>
+      <span>{{ product().description }}</span>
+      <p></p>
+      <p></p>
+      <h4>Dimensions</h4>
+      <span><b>Height: </b>{{ product().dimensions.height }}"</span>
+      <span><b>Width: </b>{{ product().dimensions.width }}"</span>
+      <span><b>Depth: </b>{{ product().dimensions.depth }}"</span>
+      <span><b>Weight: </b>{{ product().weight }} lbs</span>
+    </div>
+
+  </div>
+
+}

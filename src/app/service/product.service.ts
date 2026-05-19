@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable, resource, ResourceRef, signal, WritableSignal } from "@angular/core";
 import { firstValueFrom } from "rxjs";
-import { ProductResponse } from "../model/product.model";
+import { Product, ProductResponse } from "../model/product.model";
 
 @Injectable({
   providedIn: 'root'
@@ -14,11 +14,12 @@ export class ProductService {
   private readonly API_URL: string = 'https://dummyjson.com/products';
   private readonly http = inject(HttpClient);
 
-  // singleProduct: ResourceRef<Product> = resource<Product, { id: number }>({
-  //   request: () => ({ id: 1 }),
-  //   loader: ({ request }) =>
-  //     firstValueFrom(this.http.get<Product>(`${this.API_URL}/${request.id}`)),
-  // });
+  readonly productId: WritableSignal<number> = signal(undefined);
+  singleProduct: ResourceRef<Product> = resource<Product, { id: number }>({
+    request: () => this.productId() !== undefined ? { id: this.productId() } : undefined,
+    loader: ({ request }) =>
+      firstValueFrom(this.http.get<Product>(`${this.API_URL}/${request.id}`)),
+  });
 
   allProducts: ResourceRef<ProductResponse> = resource<ProductResponse, { skip: number, category: string | null }>({
     request: () => {

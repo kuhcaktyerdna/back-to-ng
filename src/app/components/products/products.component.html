@@ -1,25 +1,21 @@
 <app-categories></app-categories>
 <div class="products-container">
-  <h1>Products</h1>
+  <h1>{{ category()?.name || 'Products' }}</h1>
   @if (productsService.allProducts.isLoading()) {
-    <div class="d-flex justify-content-center align-items-center h-100">
-      <div class="spinner-border medium text-success" role="status">
-        <span class="sr-only">Loading...</span>
-      </div>
-    </div>
+    <ui-spinner/>
   } @else {
     @for (product of productsService.allProducts.value().products; track product.id) {
       <app-product-card [product]="product"></app-product-card>
     }
     <div class="pagination-container position-relative d-flex justify-content-center">
       <ngb-pagination
-                      [collectionSize]="productsService.allProducts.value().total"
-                      [page]="productsService.pageNumber()"
-                      [pageSize]="productsService.pageSize()"
-                      [maxSize]="5"
-                      [rotate]="true"
-                      [boundaryLinks]="shouldShowBoundaryLinks()"
-                      (pageChange)="changePage($event)"
+        [collectionSize]="productsService.allProducts.value().total"
+        [page]="productsService.pageNumber()"
+        [pageSize]="productsService.pageSize()"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="shouldShowBoundaryLinks()"
+        (pageChange)="changePage($event)"
       />
       <div class="page-size-container d-flex position-absolute end-0">
         <span>Per page: </span>

@@ -1,5 +1,5 @@
 <div class="product-card-container">
-  <div class="preview-wrapper">
+  <div class="preview-wrapper" [routerLink]="['/product', product.id]">
     <span class="preview-title"
           [ngbTooltip]="product.title"
           [openDelay]="1000"
@@ -8,16 +8,18 @@
     >{{ product.title }}</span>
     <ngb-rating [max]="5" [readonly]="true" [rate]="product.rating"/>
     <span class="rating">{{ product.rating }}</span>
-    <img class="preview-image" [ngSrc]="product.thumbnail"
-         width="200"
-         height="200"
-         draggable="false"
+    <img class="preview-image"
+         [ngSrc]="product.thumbnail"
+         [priority]="true"
+         [width]="200"
+         [height]="200"
+         [draggable]="false"
          alt="no image found">
   </div>
   <div class="description">
     <span class="availability"
-          [ngClass]="getClassForAvailability(product.availabilityStatus)">
-      <fa-icon [icon]="getIconForAvailability(product.availabilityStatus)" [mask]=""/>
+          [ngClass]="ProductUtil.getClassForAvailability(product.availabilityStatus)">
+      <fa-icon [icon]="ProductUtil.getIconForAvailability(product.availabilityStatus)" [mask]=""/>
       {{ product.availabilityStatus }}
     </span>
     <span><b>Product code:</b> {{ product.sku }}</span>
@@ -27,10 +29,10 @@
   </div>
   <div class="info-wrapper">
     <span class="price text-end"
-          [ngbTooltip]="getProductPrice(product)"
+          [ngbTooltip]="ProductUtil.getProductPrice(product)"
           [openDelay]="1000"
-          [disableTooltip]="getProductPrice(product).length < 10"
-    >{{ getProductPrice(product) }}</span>
+          [disableTooltip]="ProductUtil.getProductPrice(product).length < 10"
+    >{{ ProductUtil.getProductPrice(product) }}</span>
     <ui-button
       [type]="'success'"
     > Add to cart

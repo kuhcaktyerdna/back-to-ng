@@ -1,0 +1,52 @@
+@use "../../../styles/colors" as *;
+@use "../../../styles/mixins" as *;
+
+
+:host {
+
+  display: flex;
+  justify-content: center;
+
+  .products-container {
+    width: 1250px;
+    padding: 10px;
+    margin: 1.5rem 0;
+    @include white-glass();
+
+    .product-preview {
+      .info-wrapper {
+        //justify-content: space-between;
+
+        .price {
+          font-size: 40px;
+          color: $burgundy;
+          @include text-ellipsis(200px);
+        }
+
+        ui-input::ng-deep {
+          width: 3rem;
+        }
+      }
+
+      .product-info {
+        .availability {
+          font-weight: bold;
+
+          &.in_stock {
+            color: green;
+          }
+
+          &.out_of_stock {
+            color: red;
+          }
+
+          &.low_stock {
+            color: orange;
+          }
+        }
+      }
+    }
+
+  }
+
+}

@@ -21,6 +21,12 @@ export interface Product {
   category: any,
   images: string[],
   thumbnail: string
+  weight: number,
+  dimensions: {
+    height: number,
+    width: number,
+    depth: number
+  }
 }
 
 export type AvailabilityStatus = 'In Stock' | 'Low Stock' | 'Out of Stock'
