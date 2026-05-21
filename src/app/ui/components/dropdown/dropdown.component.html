@@ -1,12 +1,14 @@
 <div class="dropdown"
-     [ngClass]="{'with-hover': openOnHover}">
+     (mouseenter)="onMouseEnter()"
+     (mouseleave)="onMouseLeave($event)">
   <button class="btn btn-outline-secondary dropdown-toggle"
           type="button"
-          data-bs-toggle="dropdown"
-          aria-expanded="false">
+          [attr.data-bs-toggle]="openOnHover ? null : 'dropdown'"
+          [attr.aria-expanded]="isOpen()"
+          (click)="toggle()">
     <ng-content select="[button]"></ng-content>
   </button>
-  <div class="dropdown-menu">
+  <div class="dropdown-menu" [class.show]="isOpen()">
     <ng-content select="[dropdown-menu]"></ng-content>
   </div>
 </div>

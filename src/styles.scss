@@ -18,11 +18,6 @@ html, body {
   border-color: $dark-grey !important;
 }
 
-.dropdown.with-hover:hover .dropdown-menu {
-  display: block;
-  margin-top: 1px;
-}
-
 
 ngb-pagination .page-item {
   &.active .page-link {
