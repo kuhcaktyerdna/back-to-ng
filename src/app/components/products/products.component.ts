@@ -1,15 +1,12 @@
-import { Component, computed, effect, inject, OnDestroy, Signal } from '@angular/core';
+import { Component, computed, effect, inject, input, InputSignal, OnDestroy, Signal } from '@angular/core';
 import { ProductCardComponent } from "../../core/product-card/product-card.component";
 import { ProductService } from "../../service/product.service";
 import { ButtonComponent } from "../../ui/components/button/button.component";
 import { NgbPagination } from "@ng-bootstrap/ng-bootstrap";
 import { DropdownComponent } from "../../ui/components/dropdown/dropdown.component";
 import CategoriesComponent from "../categories/categories.component";
-import { ActivatedRoute } from "@angular/router";
-import { map } from "rxjs";
 import { ViewportScroller } from "@angular/common";
 import { CategoryService } from "../../service/category.service";
-import { toSignal } from "@angular/core/rxjs-interop";
 import { Category } from "../../model/category.model";
 import { SpinnerComponent } from "../../ui/components/spinner/spinner.component";
 
@@ -32,15 +29,12 @@ export default class ProductsComponent implements OnDestroy {
 
   protected readonly productsService: ProductService = inject(ProductService);
   private readonly categoriesService: CategoryService = inject(CategoryService);
-  private readonly activatedRoute: ActivatedRoute = inject(ActivatedRoute);
   private readonly scroller: ViewportScroller = inject(ViewportScroller);
 
   protected readonly category: Signal<Category> = computed(() =>
     this.categoriesService.allCategories.value()?.find(({ slug }) => slug === this.categorySlug())
   );
-  private readonly categorySlug: Signal<string> = toSignal(this.activatedRoute.params.pipe(
-    map(pathParams => pathParams['categorySlug'] ?? null)
-  ));
+  protected readonly categorySlug: InputSignal<string> = input<string>();
 
   constructor() {
     effect(() => {

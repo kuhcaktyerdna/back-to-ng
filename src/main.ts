@@ -6,7 +6,7 @@ import { EffectsModule } from "@ngrx/effects";
 import { AuthEffects } from "./app/state/auth/auth.effects";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
-import { provideRouter } from "@angular/router";
+import { provideRouter, withComponentInputBinding, withViewTransitions } from "@angular/router";
 import { routes } from "./app/app.routes";
 import { StoreModule } from "@ngrx/store";
 import { authReducer } from "./app/state/auth/auth.reducer";
@@ -19,7 +19,8 @@ bootstrapApplication(AppComponent, {
     importProvidersFrom(
       BrowserModule,
       EffectsModule.forRoot([AuthEffects]),
-      FormsModule, FontAwesomeModule,
+      FormsModule,
+      FontAwesomeModule,
       ReactiveFormsModule,
       StoreModule.forRoot({ auth: authReducer }),
       ToastrModule.forRoot(),
@@ -27,7 +28,11 @@ bootstrapApplication(AppComponent, {
     AuthService,
     provideHttpClient(withInterceptorsFromDi()),
     provideAnimations(),
-    provideRouter(routes)
+    provideRouter(
+      routes,
+      withComponentInputBinding(),
+      withViewTransitions()
+    )
   ]
 }).catch(console.error);
 

@@ -21,8 +21,8 @@ html, body {
 
 ngb-pagination .page-item {
   &.active .page-link {
-    background-color: $ngb-success;
-    border-color: $ngb-success;
+    background-color: $button-primary;
+    border-color: $button-primary;
   }
 
   &:not(.active) .page-link {
@@ -33,4 +33,13 @@ ngb-pagination .page-item {
 
 ui-spinner.main .spinner-border {
   color: $light-blue !important;
+}
+
+.btn-primary {
+  background-color: $button-primary !important;
+  border-color: $button-primary !important;
+
+  &:hover {
+    background-color: rgba($button-primary, 0.8) !important;
+  }
 }

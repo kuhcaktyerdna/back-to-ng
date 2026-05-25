@@ -1,4 +1,4 @@
-import { Component, inject, Signal } from '@angular/core';
+import { Component, effect, inject, input, InputSignal, Signal } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { ProductService } from "../../service/product.service";
 import { toSignal } from "@angular/core/rxjs-interop";
@@ -34,22 +34,17 @@ export default class SingleProductComponent {
   protected readonly PRODUCT_IMAGE_SIZE_PX = 600;
 
   protected readonly productsService: ProductService = inject(ProductService);
-  private readonly activatedRoute: ActivatedRoute = inject(ActivatedRoute);
+  protected readonly ProductUtil: typeof ProductUtil = ProductUtil;
+  protected readonly faCartArrowDown = faCartArrowDown;
 
   protected readonly product: Signal<Product> = this.productsService.singleProduct.value;
-
-  private readonly productId: Signal<number> = toSignal(this.activatedRoute.params.pipe(
-    map(pathParams => pathParams['productId'] as number ?? null)
-  ));
+  protected readonly productId: InputSignal<number> = input<number>();
 
   constructor() {
-    this.productsService.productId.set(this.productId());
+    effect(() => {
+      this.productsService.productId.set(this.productId());
+    });
   }
-
-
-  protected readonly ProductService = ProductService;
-  protected readonly ProductUtil = ProductUtil;
-  protected readonly faCartArrowDown = faCartArrowDown;
 
   protected canBuy(product: Product): () => boolean {
     return () => product.stock === 0;
