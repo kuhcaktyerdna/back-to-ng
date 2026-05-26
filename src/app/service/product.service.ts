@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
-import { inject, Injectable, linkedSignal, resource, ResourceRef, signal, WritableSignal } from "@angular/core";
-import { firstValueFrom } from "rxjs";
+import { inject, Injectable, linkedSignal, ResourceRef, signal, WritableSignal } from "@angular/core";
 import { Product, ProductResponse } from "../model/product.model";
+import { rxResource } from "@angular/core/rxjs-interop";
 
 @Injectable({
   providedIn: 'root'
@@ -18,21 +18,19 @@ export class ProductService {
   private readonly http = inject(HttpClient);
 
   readonly productId: WritableSignal<number> = signal(undefined);
-  singleProduct: ResourceRef<Product> = resource<Product, { id: number }>({
+  singleProduct: ResourceRef<Product> = rxResource<Product, { id: number }>({
     request: () => this.productId() !== undefined ? { id: this.productId() } : undefined,
     loader: ({ request }) =>
-      firstValueFrom(this.http.get<Product>(`${this.API_URL}/${request.id}`)),
+      this.http.get<Product>(`${this.API_URL}/${request.id}`),
   });
 
-  allProducts: ResourceRef<ProductResponse> = resource<ProductResponse, { skip: number, category: string | null }>({
+  allProducts: ResourceRef<ProductResponse> = rxResource<ProductResponse, { skip: number, category: string | null }>({
     request: () => {
       const category = this.category();
       return category !== undefined ? { skip: (this.pageNumber() - 1) * this.pageSize(), category } : undefined;
     },
-    loader: ({ request }) => {
-      const products$ = this.http.get<ProductResponse>(this.buildUrl(request.skip, request.category));
-      return firstValueFrom(products$);
-    }
+    loader: ({ request }) =>
+      this.http.get<ProductResponse>(this.buildUrl(request.skip, request.category))
   });
 
 
