@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, input, InputSignal, OnDestroy, Signal } from '@angular/core';
+import { Component, computed, effect, inject, input, InputSignal, Signal } from '@angular/core';
 import { ProductCardComponent } from "../../core/product-card/product-card.component";
 import { ProductService } from "../../service/product.service";
 import { ButtonComponent } from "../../ui/components/button/button.component";
@@ -23,7 +23,7 @@ import { SpinnerComponent } from "../../ui/components/spinner/spinner.component"
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss'
 })
-export default class ProductsComponent implements OnDestroy {
+export default class ProductsComponent {
 
   protected readonly PAGE_SIZE_OPTIONS: number[] = [5, 10, 20, 50, 100];
 
@@ -38,7 +38,7 @@ export default class ProductsComponent implements OnDestroy {
 
   constructor() {
     effect(() => {
-      this.productsService.category.set(this.categorySlug());
+      this.productsService.category.set(this.categorySlug() || null);
       document.title = this.category() ? `${this.category().name} | Products` : 'Products';
     });
   }
@@ -49,17 +49,12 @@ export default class ProductsComponent implements OnDestroy {
   }
 
   protected changePageSize(pageSize: number): void {
-    this.productsService.pageNumber.set(1);
     this.productsService.pageSize.set(pageSize);
     this.scroller.scrollToPosition([0, 0]);
   }
 
   protected shouldShowBoundaryLinks(): boolean {
     return this.productsService.allProducts.value().total / this.productsService.pageSize() > 5;
-  }
-
-  ngOnDestroy(): void {
-    this.productsService.category.set(undefined);
   }
 
 }

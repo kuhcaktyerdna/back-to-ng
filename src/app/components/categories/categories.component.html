@@ -1,6 +1,7 @@
 <div class="categories-container">
   @for (category of categoriesService.allCategories.value(); track category.slug) {
     <ui-button class="category-button"
+               [ngClass]="{'selected-test': category.slug === productService.category()}"
                [ngbTooltip]="category.name"
                [openDelay]="500"
                [type]="'secondary'"

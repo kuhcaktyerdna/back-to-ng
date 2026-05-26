@@ -1,5 +1,5 @@
 import { HttpClient } from "@angular/common/http";
-import { inject, Injectable, resource, ResourceRef, signal, WritableSignal } from "@angular/core";
+import { inject, Injectable, linkedSignal, resource, ResourceRef, signal, WritableSignal } from "@angular/core";
 import { firstValueFrom } from "rxjs";
 import { Product, ProductResponse } from "../model/product.model";
 
@@ -9,7 +9,10 @@ import { Product, ProductResponse } from "../model/product.model";
 export class ProductService {
 
   readonly pageSize: WritableSignal<number> = signal(10);
-  readonly pageNumber: WritableSignal<number> = signal(1);
+  readonly pageNumber: WritableSignal<number> = linkedSignal(() => {
+    this.category();
+    return 1;
+  });
   readonly category: WritableSignal<string> = signal(undefined);
   private readonly API_URL: string = 'https://dummyjson.com/products';
   private readonly http = inject(HttpClient);
