@@ -20,23 +20,22 @@
     </ng-container>
 
     <ng-container dropdown-menu>
-      @if (!user) {
+      @if (!user()) {
         <form [formGroup]="userForm" class="p-2">
           <div class="mb-3">
-            <label for="userEmail" class="form-label">Email address</label>
-            <input type="email"
-                   class="form-control"
-                   id="userEmail"
-                   placeholder="email@example.com"
-                   [formControlName]="'userEmail'">
+            <label for="username" class="form-label">Username</label>
+            <input class="form-control"
+                   id="username"
+                   placeholder="Username"
+                   [formControlName]="'username'">
           </div>
           <div class="mb-3">
-            <label for="userPassword" class="form-label">Password</label>
+            <label for="password" class="form-label">Password</label>
             <input type="password"
                    class="form-control"
-                   id="userPassword"
+                   id="password"
                    placeholder="Password"
-                   [formControlName]="'userPassword'">
+                   [formControlName]="'password'">
           </div>
           <ui-button class="mb-1"
                      [type]="'secondary'"
@@ -51,7 +50,7 @@
         </form>
       } @else {
         <div class="m-3">
-          <span>You've logged in! {{ user.email }}</span>
+          <span>You've logged in! {{ user().email }}</span>
           <ui-button class="mb-1"
                      [type]="'secondary'"
                      (click)="signOut()"

@@ -1,4 +1,4 @@
-export interface CredentialsModel {
-  email: string;
-  passwordHash: string
+export type Credentials = {
+  username: string;
+  password: string
 }

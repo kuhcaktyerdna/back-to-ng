@@ -1,11 +1,12 @@
 import { Component, inject, Signal } from "@angular/core";
 import { Store } from "@ngrx/store";
-import { User } from "../../model/user";
 import { selectUser } from "../../state/auth/auth.selectors";
 import { AppState } from "../../state/app.state";
 import { LOGIN, LOGOUT, REGISTER } from "../../state/auth/auth.actions";
 import { HeaderPresentationComponent } from "./header-presentation.component";
 import { toSignal } from "@angular/core/rxjs-interop";
+import { User } from "../../model/user.model";
+import { Credentials } from "../../model/credentials.model";
 
 @Component({
   selector: 'app-header-smart',
@@ -27,16 +28,16 @@ export class HeaderSmartComponent {
 
   protected user: Signal<User> = toSignal(this.store.select(selectUser));
 
-  protected onSignIn({ email, password }: { email: string, password: string }): void {
-    this.store.dispatch(LOGIN({ email, password }));
+  protected onSignIn(credentials: Credentials): void {
+    this.store.dispatch(LOGIN(credentials));
   }
 
   protected onSignOut(): void {
     this.store.dispatch(LOGOUT());
   }
 
-  protected onSignUp({ email, password }: { email: string, password: string }): void {
-    this.store.dispatch(REGISTER({email, password}))
+  protected onSignUp(credentials: Credentials): void {
+    this.store.dispatch(REGISTER(credentials))
   }
 
 }
