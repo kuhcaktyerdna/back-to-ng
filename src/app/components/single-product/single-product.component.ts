@@ -1,17 +1,16 @@
 import { Component, effect, inject, input, InputSignal, Signal } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
 import { ProductService } from "../../service/product.service";
-import { toSignal } from "@angular/core/rxjs-interop";
-import { map } from "rxjs";
 import { NgbCarousel, NgbSlide, NgbTooltip } from "@ng-bootstrap/ng-bootstrap";
 import { NgClass, NgOptimizedImage } from "@angular/common";
 import { Product } from "../../model/product.model";
 import { FaIconComponent } from "@fortawesome/angular-fontawesome";
 import { ProductUtil } from "../../utils/product.util";
-import { ButtonComponent } from "../../ui/components/button/button.component";
+import {
+  ButtonComponent,
+  InputComponent,
+  SpinnerComponent
+} from "../../ui/components";
 import { faCartArrowDown } from "@fortawesome/free-solid-svg-icons";
-import { InputComponent } from "../../ui/components/input/input.component";
-import { SpinnerComponent } from "../../ui/components/spinner/spinner.component";
 
 @Component({
   selector: 'app-single-product',

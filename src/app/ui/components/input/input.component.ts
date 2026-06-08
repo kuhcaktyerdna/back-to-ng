@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ButtonComponent } from "../button/button.component";
 import { FormsModule } from "@angular/forms";
+import { ButtonComponent } from "../button/button.component";
 
 @Component({
   selector: 'ui-input',

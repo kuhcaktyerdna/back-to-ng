@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Product } from "../../model/product.model";
 import { NgClass, NgOptimizedImage } from "@angular/common";
-import { ButtonComponent } from "../../ui/components/button/button.component";
+import { ButtonComponent } from "../../ui/components";
 import { NgbRating, NgbTooltip } from "@ng-bootstrap/ng-bootstrap";
 import { FaIconComponent } from "@fortawesome/angular-fontawesome";
 import { RouterLink } from "@angular/router";

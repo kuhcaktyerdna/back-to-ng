@@ -2,13 +2,15 @@ import { Component, input, InputSignal, output, OutputEmitterRef } from '@angula
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { faCartShopping, faHeadset, faHeart, faSearch, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FaIconComponent, IconDefinition } from "@fortawesome/angular-fontawesome";
-import { DropdownComponent } from "../../ui/components/dropdown/dropdown.component";
-import { ButtonComponent } from "../../ui/components/button/button.component";
-import { InputComponent } from "../../ui/components/input/input.component";
-import { IconComponent } from "../../ui/components/icon/icon.component";
 import { RouterLink } from "@angular/router";
 import { User } from "../../model/user.model";
 import { Credentials } from "../../model/credentials.model";
+import {
+  ButtonComponent,
+  DropdownComponent,
+  IconComponent,
+  InputComponent
+} from "../../ui/components";
 
 @Component({
   selector: 'app-header-presentation',
