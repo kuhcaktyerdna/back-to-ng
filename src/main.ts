@@ -1,38 +1,27 @@
-import { AuthService } from "./app/service/auth.service";
-import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
-import { bootstrapApplication, BrowserModule } from "@angular/platform-browser";
-import { provideAnimations } from "@angular/platform-browser/animations";
-import { EffectsModule } from "@ngrx/effects";
-import { AuthEffects } from "./app/state/auth/auth.effects";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
+import { provideHttpClient } from "@angular/common/http";
+import { bootstrapApplication } from "@angular/platform-browser";
+import { provideEffects } from "@ngrx/effects";
+import { AuthEffects } from "@state/auth/auth.effects";
 import { provideRouter, withComponentInputBinding, withViewTransitions } from "@angular/router";
 import { routes } from "./app/app.routes";
-import { StoreModule } from "@ngrx/store";
-import { authReducer } from "./app/state/auth/auth.reducer";
-import { ToastrModule } from "ngx-toastr";
+import { provideStore } from "@ngrx/store";
+import { authReducer } from "@state/auth/auth.reducer";
+import { provideToastr } from "ngx-toastr";
 import { AppComponent } from "./app/app.component";
-import { importProvidersFrom } from "@angular/core";
 
 bootstrapApplication(AppComponent, {
   providers: [
-    importProvidersFrom(
-      BrowserModule,
-      EffectsModule.forRoot([AuthEffects]),
-      FormsModule,
-      FontAwesomeModule,
-      ReactiveFormsModule,
-      StoreModule.forRoot({ auth: authReducer }),
-      ToastrModule.forRoot(),
-    ),
-    AuthService,
-    provideHttpClient(withInterceptorsFromDi()),
-    provideAnimations(),
+    // Setup NGRX:
+    provideEffects([AuthEffects]),
+    provideStore({ auth: authReducer }),
+
+    provideHttpClient(),
     provideRouter(
       routes,
       withComponentInputBinding(),
       withViewTransitions()
-    )
+    ),
+    provideToastr()
   ]
 }).catch(console.error);
 
