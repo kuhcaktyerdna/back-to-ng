@@ -1,4 +1,4 @@
-import { AvailabilityStatus, Product } from "../model/product.model";
+import { AvailabilityStatus, Product } from "@model/product.model";
 import { IconDefinition } from "@fortawesome/angular-fontawesome";
 import { faCircle, faCircleHalfStroke, faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 
