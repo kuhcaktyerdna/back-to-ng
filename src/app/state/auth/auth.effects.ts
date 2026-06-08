@@ -2,9 +2,9 @@ import { inject, Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { LOGGED_IN, LOGIN, REGISTER } from "./auth.actions";
 import { filter, map, Observable, switchMap } from "rxjs";
-import { AuthService } from "../../service/auth.service";
-import { User } from "../../model/user.model";
-import { Credentials } from "../../model/credentials.model";
+import { AuthService } from "@service/auth.service";
+import { User } from "@model/user.model";
+import { Credentials } from "@model/credentials.model";
 
 @Injectable()
 export class AuthEffects {

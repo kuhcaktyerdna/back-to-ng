@@ -1,15 +1,15 @@
 import { Component, effect, inject, input, InputSignal, Signal } from '@angular/core';
-import { ProductService } from "../../service/product.service";
+import { ProductService } from "@service/product.service";
 import { NgbCarousel, NgbSlide, NgbTooltip } from "@ng-bootstrap/ng-bootstrap";
 import { NgClass, NgOptimizedImage } from "@angular/common";
-import { Product } from "../../model/product.model";
+import { Product } from "@model/product.model";
 import { FaIconComponent } from "@fortawesome/angular-fontawesome";
-import { ProductUtil } from "../../utils/product.util";
+import { ProductUtil } from "@utils/product.util";
 import {
   ButtonComponent,
   InputComponent,
   SpinnerComponent
-} from "../../ui/components";
+} from "@ui/components";
 import { faCartArrowDown } from "@fortawesome/free-solid-svg-icons";
 
 @Component({

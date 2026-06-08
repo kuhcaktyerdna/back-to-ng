@@ -1,10 +1,10 @@
 import { Component, inject } from '@angular/core';
-import { CategoryService } from "../../service/category.service";
+import { CategoryService } from "@service/category.service";
 import { RouterLink } from "@angular/router";
 import { NgbTooltip } from "@ng-bootstrap/ng-bootstrap";
 import { NgClass } from "@angular/common";
-import { ProductService } from "../../service/product.service";
-import { ButtonComponent } from "../../ui/components";
+import { ProductService } from "@service/product.service";
+import { ButtonComponent } from "@ui/components";
 
 @Component({
   selector: 'app-categories',

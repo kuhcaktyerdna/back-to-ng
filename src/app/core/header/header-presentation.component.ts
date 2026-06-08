@@ -3,14 +3,14 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angula
 import { faCartShopping, faHeadset, faHeart, faSearch, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FaIconComponent, IconDefinition } from "@fortawesome/angular-fontawesome";
 import { RouterLink } from "@angular/router";
-import { User } from "../../model/user.model";
-import { Credentials } from "../../model/credentials.model";
+import { User } from "@model/user.model";
+import { Credentials } from "@model/credentials.model";
 import {
   ButtonComponent,
   DropdownComponent,
   IconComponent,
   InputComponent
-} from "../../ui/components";
+} from "@ui/components";
 
 @Component({
   selector: 'app-header-presentation',

@@ -1,16 +1,16 @@
 import { Component, computed, effect, inject, input, InputSignal, Signal } from '@angular/core';
-import { ProductCardComponent } from "../../core/product-card/product-card.component";
-import { ProductService } from "../../service/product.service";
+import { ProductCardComponent } from "@core/product-card/product-card.component";
+import { ProductService } from "@service/product.service";
 import {
   ButtonComponent,
   DropdownComponent,
   SpinnerComponent
-} from "../../ui/components";
+} from "@ui/components";
 import { NgbPagination } from "@ng-bootstrap/ng-bootstrap";
 import CategoriesComponent from "../categories/categories.component";
 import { ViewportScroller } from "@angular/common";
-import { CategoryService } from "../../service/category.service";
-import { Category } from "../../model/category.model";
+import { CategoryService } from "@service/category.service";
+import { Category } from "@model/category.model";
 
 @Component({
   selector: 'app-products',

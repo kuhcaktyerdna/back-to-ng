@@ -23,7 +23,15 @@
       "ES2023",
       "dom"
     ],
-    "strictNullChecks": false
+    "strictNullChecks": false,
+    "paths": {
+      "@core/*": ["./src/app/core/*"],
+      "@model/*": ["./src/app/model/*"],
+      "@service/*": ["./src/app/service/*"],
+      "@state/*": ["./src/app/state/*"],
+      "@ui/*": ["./src/app/ui/*"],
+      "@utils/*": ["./src/app/utils/*"]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
